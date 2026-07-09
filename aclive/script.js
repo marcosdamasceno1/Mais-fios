@@ -22,7 +22,6 @@ hamburger.addEventListener('click', () => {
   document.body.style.overflow = open ? 'hidden' : '';
 });
 
-// Fecha o menu ao clicar em qualquer link
 navLinks.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('open');
@@ -32,8 +31,7 @@ navLinks.querySelectorAll('a').forEach((link) => {
   });
 });
 
-// Animação de entrada (reveal) com stagger por seção
-// Nos cards de serviço, a classe .visible também "liga" o toggle azul
+// Animação de entrada (reveal) com stagger
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -50,7 +48,7 @@ document.querySelectorAll('.reveal').forEach((el, i) => {
   revealObserver.observe(el);
 });
 
-// Contadores animados nas estatísticas
+// Contadores animados na faixa de números
 const animateCount = (el) => {
   const target = parseFloat(el.dataset.count);
   const prefix = el.dataset.prefix || '';
@@ -81,15 +79,52 @@ const statsObserver = new IntersectionObserver(
 
 document.querySelectorAll('.stat-num[data-count]').forEach((el) => statsObserver.observe(el));
 
-// FAQ: fecha os outros itens ao abrir um
-document.querySelectorAll('.faq-item').forEach((item) => {
-  item.addEventListener('toggle', () => {
-    if (!item.open) return;
-    document.querySelectorAll('.faq-item[open]').forEach((other) => {
-      if (other !== item) other.open = false;
+// Serviços: acordeão — um aberto por vez
+const services = document.querySelectorAll('.svc');
+
+services.forEach((svc) => {
+  svc.querySelector('.svc-head').addEventListener('click', () => {
+    const willOpen = !svc.classList.contains('open');
+    services.forEach((other) => {
+      other.classList.remove('open');
+      other.querySelector('.svc-head').setAttribute('aria-expanded', 'false');
     });
+    if (willOpen) {
+      svc.classList.add('open');
+      svc.querySelector('.svc-head').setAttribute('aria-expanded', 'true');
+    }
   });
 });
+
+// Depoimentos: slider com setas, bolinhas e autoplay
+const quotes = document.querySelectorAll('.quote');
+const dotsWrap = document.getElementById('quoteDots');
+let quoteIndex = 0;
+let quoteTimer;
+
+quotes.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'quote-dot' + (i === 0 ? ' active' : '');
+  dot.setAttribute('aria-label', `Depoimento ${i + 1}`);
+  dot.addEventListener('click', () => showQuote(i));
+  dotsWrap.appendChild(dot);
+});
+
+const showQuote = (i, fromUser = true) => {
+  quoteIndex = (i + quotes.length) % quotes.length;
+  quotes.forEach((q, k) => q.classList.toggle('active', k === quoteIndex));
+  dotsWrap.querySelectorAll('.quote-dot').forEach((d, k) => d.classList.toggle('active', k === quoteIndex));
+  if (fromUser) restartAutoplay();
+};
+
+const restartAutoplay = () => {
+  clearInterval(quoteTimer);
+  quoteTimer = setInterval(() => showQuote(quoteIndex + 1, false), 6000);
+};
+
+document.getElementById('quotePrev').addEventListener('click', () => showQuote(quoteIndex - 1));
+document.getElementById('quoteNext').addEventListener('click', () => showQuote(quoteIndex + 1));
+restartAutoplay();
 
 // Formulário de contato: envia para contato.php sem recarregar a página
 const leadForm = document.getElementById('leadForm');
