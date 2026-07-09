@@ -33,6 +33,7 @@ navLinks.querySelectorAll('a').forEach((link) => {
 });
 
 // Animação de entrada (reveal) com stagger por seção
+// Nos cards de serviço, a classe .visible também "liga" o toggle azul
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -49,12 +50,12 @@ document.querySelectorAll('.reveal').forEach((el, i) => {
   revealObserver.observe(el);
 });
 
-// Contadores animados nas estatísticas do hero
+// Contadores animados nas estatísticas
 const animateCount = (el) => {
   const target = parseFloat(el.dataset.count);
   const prefix = el.dataset.prefix || '';
   const suffix = el.dataset.suffix || '';
-  const duration = 1400;
+  const duration = 1600;
   const start = performance.now();
 
   const tick = (now) => {
@@ -88,4 +89,46 @@ document.querySelectorAll('.faq-item').forEach((item) => {
       if (other !== item) other.open = false;
     });
   });
+});
+
+// Formulário de contato: envia para contato.php sem recarregar a página
+const leadForm = document.getElementById('leadForm');
+const formStatus = document.getElementById('formStatus');
+
+leadForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  if (!leadForm.checkValidity()) {
+    leadForm.reportValidity();
+    return;
+  }
+
+  const submitBtn = leadForm.querySelector('.btn-submit');
+  submitBtn.disabled = true;
+  submitBtn.style.opacity = '0.7';
+  formStatus.className = 'form-status';
+  formStatus.textContent = 'Enviando...';
+
+  try {
+    const response = await fetch(leadForm.action, {
+      method: 'POST',
+      body: new FormData(leadForm),
+      headers: { Accept: 'application/json' },
+    });
+    const data = await response.json();
+
+    if (data.ok) {
+      formStatus.className = 'form-status ok';
+      formStatus.textContent = 'Recebido! Nossa equipe entra em contato em breve. 🚀';
+      leadForm.reset();
+    } else {
+      throw new Error(data.erro || 'Falha no envio');
+    }
+  } catch (err) {
+    formStatus.className = 'form-status err';
+    formStatus.textContent = 'Não foi possível enviar agora. Chame a gente no WhatsApp!';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = '';
+  }
 });
