@@ -4,20 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marketing para Advocacia | Aclive — Autoridade digital para escritórios jurídicos</title>
-  <meta name="description" content="Marketing para advogados que respeita o Provimento 205/2021 da OAB: produção de vídeo, social media, tráfego pago e estrutura comercial. Menos dependência de indicação, mais cliente certo chegando toda semana.">
+  <meta name="description" content="Marketing digital para advogados e escritórios jurídicos: produção audiovisual, social media, tráfego pago e estrutura comercial. Construa autoridade e dependa menos de indicação com a Aclive.">
 
   <!-- ============================================================
        PÁGINA DE SEGMENTO: ADVOCACIA  (slug: /segmentos/advocacia/)
-       Design próprio (estilo "dossiê jurídico"), independente do
-       template dos outros segmentos. Estilos com prefixo .adv-*
-       ficam neste arquivo, então a página funciona mesmo sem
-       depender do style.css do site.
+       Layout clean/leve, escopo .acl-*. A página traz o próprio
+       <style>, então funciona mesmo sem depender do style.css.
        ============================================================ -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css?v=4">
 
   <!-- Favicon (minha logo) -->
@@ -44,213 +41,185 @@
 
   <style>
   /* ======================================================
-     ADVOCACIA — estilo "dossiê jurídico" (escopo .adv)
-     Navy Aclive + latão (autoridade) + papel de cartório.
+     ADVOCACIA — layout clean/leve (escopo .acl)
+     Azul/branco, muito respiro, cartões arredondados.
      ====================================================== */
-  .adv{
-    --ink:#0a1020;
-    --navy:#0c1c40;
-    --blue:#2f5fe0;
-    --brass:#c9a24b;
-    --brass-2:#e6cf92;
-    --brass-ink:#8a6a1c;
-    --paper:#f5f2e9;
-    --paper-2:#efe9db;
-    --slate:#454d61;
-    --mist:#c3cfe8;
-    --serif:'Fraunces',Georgia,'Times New Roman',serif;
-    --sans:'Sora',system-ui,sans-serif;
-    --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,monospace;
+  .acl{
+    --blue:#2563eb;
+    --blue-strong:#1a4fe0;
+    --blue-soft:#eaf1ff;
+    --blue-softer:#f2f7ff;
+    --ink:#111f3a;
+    --navy:#0f1e37;
+    --slate:#5b6b86;
+    --line:#e7edf7;
+    --paper:#ffffff;
+    --sans:'Sora',system-ui,-apple-system,sans-serif;
+    --body:'Inter','Sora',system-ui,sans-serif;
     font-family:var(--sans);
     color:var(--ink);
     -webkit-font-smoothing:antialiased;
   }
-  .adv-wrap{max-width:1140px;margin:0 auto;padding:0 24px}
-  .adv em{font-style:italic}
+  .acl-wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .acl .hl{color:var(--blue)}
+  .acl-section{padding:96px 0}
+  .acl-section.light{background:var(--blue-softer)}
 
-  /* Eyebrow tipo etiqueta de documento */
-  .adv-eyebrow{
-    display:inline-flex;align-items:center;gap:11px;
-    font-family:var(--mono);font-size:12px;font-weight:500;
-    letter-spacing:.22em;text-transform:uppercase;color:var(--brass-ink);
-  }
-  .adv-eyebrow::before{content:"";width:8px;height:8px;background:var(--brass);transform:rotate(45deg)}
-  .adv-dark .adv-eyebrow{color:var(--brass)}
+  /* Conteúdo aparece por padrão; a animação só liga quando o JS marca .anim-ready */
+  .acl .reveal{opacity:1;transform:none}
+  .acl.anim-ready .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease}
+  .acl.anim-ready .reveal.visible{opacity:1;transform:none}
 
-  /* Régua dupla de latão (assinatura visual) */
-  .adv-rule{position:relative;height:7px;width:72px}
-  .adv-rule::before{content:"";position:absolute;left:0;top:0;width:100%;border-top:2px solid var(--brass)}
-  .adv-rule::after{content:"";position:absolute;left:0;top:4px;width:100%;border-top:1px solid var(--brass);opacity:.5}
+  /* Eyebrow */
+  .acl-eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--blue);
+  }
+  .acl-eyebrow .ic{width:30px;height:30px;border-radius:8px;background:var(--blue);display:grid;place-items:center;color:#fff}
+  .acl-eyebrow .ic svg{width:16px;height:16px}
+  .acl-dark .acl-eyebrow{color:#9ec1ff}
 
-  /* ---------------- HERO ---------------- */
-  .adv-hero{
-    position:relative;overflow:hidden;color:var(--paper);
-    padding:148px 0 96px;
-    background:
-      radial-gradient(120% 90% at 88% -20%, rgba(47,95,224,.22), transparent 55%),
-      linear-gradient(180deg,#0a1020 0%,#0c1c40 68%,#0a1631 100%);
-  }
-  .adv-hero::before{
-    content:"";position:absolute;inset:0;pointer-events:none;
-    background-image:repeating-linear-gradient(to bottom, rgba(255,255,255,.035) 0 1px, transparent 1px 34px);
-    -webkit-mask:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
-            mask:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
-  }
-  .adv-hero .adv-wrap{position:relative;z-index:1}
-  .adv-crumb{font-family:var(--mono);font-size:12.5px;color:#7f8db0;letter-spacing:.04em;margin-bottom:34px}
-  .adv-crumb a{color:#9fb0d8;text-decoration:none}
-  .adv-crumb a:hover{color:var(--brass-2)}
-  .adv-hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:56px;align-items:start}
-  .adv-hero h1{
-    font-family:var(--serif);font-weight:400;font-optical-sizing:auto;
-    font-size:clamp(34px,4.9vw,58px);line-height:1.05;letter-spacing:-.012em;
-    margin:20px 0 0;max-width:19ch;
-  }
-  .adv-hero h1 em{color:var(--brass-2);font-style:italic}
-  .adv-lead{font-size:clamp(16px,1.55vw,18px);line-height:1.72;color:#cdd8f0;max-width:52ch;margin:26px 0 0}
-  .adv-ref{
-    display:inline-flex;align-items:center;gap:10px;margin-top:26px;
-    font-family:var(--mono);font-size:12.5px;color:#9fb0d8;letter-spacing:.02em;
-    padding:9px 14px;border:1px solid rgba(230,207,146,.26);border-radius:2px;
-  }
-  .adv-ref b{color:var(--brass-2);font-weight:500}
-  .adv-cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  /* Section head */
+  .acl-head{text-align:center;max-width:680px;margin:0 auto 52px}
+  .acl-head.wide{max-width:780px}
+  .acl-h2{font-weight:800;font-size:clamp(28px,3.6vw,42px);line-height:1.12;letter-spacing:-.02em;color:var(--ink);margin:0}
+  .acl-sub{font-family:var(--body);font-size:17px;line-height:1.65;color:var(--slate);margin:16px auto 0;max-width:52ch}
 
   /* Botões */
-  .adv-btn{
-    display:inline-flex;align-items:center;gap:10px;cursor:pointer;
-    font-family:var(--sans);font-weight:600;font-size:15px;
-    padding:15px 26px;border-radius:2px;text-decoration:none;
-    border:1px solid transparent;transition:transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+  .acl-btn{
+    display:inline-flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;
+    font-family:var(--sans);font-weight:700;font-size:15px;
+    padding:16px 26px;border-radius:12px;border:1.5px solid transparent;
+    transition:transform .18s ease, background .18s ease, box-shadow .18s ease, border-color .18s ease, color .18s ease;
   }
-  .adv-btn svg{width:17px;height:17px}
-  .adv-btn:hover{transform:translateY(-2px)}
-  .adv-btn-primary{background:var(--brass);color:#1a1405}
-  .adv-btn-primary:hover{background:var(--brass-2)}
-  .adv-btn-ghost{border-color:rgba(230,207,146,.42);color:var(--paper)}
-  .adv-btn-ghost:hover{border-color:var(--brass);color:var(--brass-2)}
-  .adv-btn-dark{border-color:rgba(12,28,64,.28);color:var(--navy)}
-  .adv-btn-dark:hover{border-color:var(--navy);color:var(--ink)}
-  .adv-btn-wa{background:#1faf52;color:#fff}
-  .adv-btn-wa:hover{background:#25c15e}
+  .acl-btn svg{width:18px;height:18px}
+  .acl-btn:hover{transform:translateY(-2px)}
+  .acl-btn-primary{background:var(--blue);color:#fff;box-shadow:0 10px 24px rgba(37,99,235,.28)}
+  .acl-btn-primary:hover{background:var(--blue-strong)}
+  .acl-btn-ghost{border-color:var(--line);color:var(--ink);background:#fff}
+  .acl-btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+  .acl-btn-ghost-dark{border-color:rgba(255,255,255,.28);color:#fff}
+  .acl-btn-ghost-dark:hover{border-color:#9ec1ff;color:#9ec1ff}
+  .acl-btn-wa{background:#1faf52;color:#fff;box-shadow:0 10px 24px rgba(31,175,82,.25)}
+  .acl-btn-wa:hover{background:#25c15e}
 
-  /* Sumário (índice do dossiê) */
-  .adv-sumario{
-    border:1px solid rgba(230,207,146,.30);border-radius:3px;
-    background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
-    padding:24px 26px 8px;
+  /* ---------------- HERO ---------------- */
+  .acl-hero{
+    position:relative;overflow:hidden;color:#eaf1ff;
+    padding:132px 0 104px;
+    background:
+      radial-gradient(90% 120% at 100% 0%, rgba(37,99,235,.30), transparent 55%),
+      linear-gradient(160deg,#0f1e37 0%,#0c1830 60%,#0a1428 100%);
   }
-  .adv-sumario h2{
-    font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.24em;
-    text-transform:uppercase;color:var(--brass-2);margin:0 0 6px;
+  .acl-hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+  .acl-crumb{font-family:var(--body);font-size:13.5px;color:#8296bd;margin-bottom:26px}
+  .acl-crumb a{color:#a9bde3;text-decoration:none}
+  .acl-crumb a:hover{color:#fff}
+  .acl-hero h1{
+    font-weight:800;font-size:clamp(34px,4.8vw,54px);line-height:1.08;letter-spacing:-.025em;
+    color:#fff;margin:18px 0 0;max-width:15ch;
   }
-  .adv-sum-item{
-    display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:baseline;
-    padding:15px 0;border-top:1px solid rgba(255,255,255,.09);
-  }
-  .adv-sum-item:first-of-type{border-top:0}
-  .adv-sum-num{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--brass)}
-  .adv-sum-txt{color:#dbe4f6;font-size:14.5px;line-height:1.35}
-  .adv-sum-txt small{display:block;color:#8b99bd;font-size:12px;margin-top:2px;letter-spacing:.01em}
+  .acl-hero-lead{font-family:var(--body);font-size:clamp(16px,1.5vw,18px);line-height:1.68;color:#c2d0ec;max-width:48ch;margin:22px 0 0}
+  .acl-aud{display:flex;flex-wrap:wrap;gap:10px 22px;margin:24px 0 0;font-family:var(--body);font-size:14.5px;color:#c2d0ec}
+  .acl-aud span{display:inline-flex;align-items:center;gap:8px}
+  .acl-aud svg{width:15px;height:15px;color:#6ea0ff}
+  .acl-hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin:34px 0 0}
 
-  /* ---------------- DIAGNÓSTICO (papel) ---------------- */
-  .adv-diag{position:relative;background:var(--paper);padding:98px 0}
-  .adv-diag::before{
-    content:"";position:absolute;inset:0;pointer-events:none;
-    background-image:repeating-linear-gradient(to bottom, rgba(12,28,64,.038) 0 1px, transparent 1px 40px);
+  /* Card visual do hero */
+  .acl-hero-card{
+    background:#fff;border-radius:22px;padding:26px 26px 22px;
+    box-shadow:0 30px 70px rgba(4,12,30,.45);position:relative;
   }
-  .adv-diag .adv-wrap{position:relative;z-index:1}
-  .adv-head{max-width:60ch}
-  .adv-head .adv-rule{margin:18px 0 20px}
-  .adv-h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.6vw,42px);line-height:1.1;letter-spacing:-.01em;color:var(--navy);margin:14px 0 0}
-  .adv-h2 em{color:var(--brass-ink)}
-  .adv-dark .adv-h2{color:var(--paper)}
-  .adv-dark .adv-h2 em{color:var(--brass-2)}
+  .acl-hero-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .acl-hero-card-top b{font-size:14.5px;color:var(--ink)}
+  .acl-hero-card-top .live{display:inline-flex;align-items:center;gap:7px;font-family:var(--body);font-size:12px;color:#1faf52;font-weight:600}
+  .acl-hero-card-top .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#1faf52;box-shadow:0 0 0 3px rgba(31,175,82,.2)}
+  .acl-hero-card .metric{font-weight:800;font-size:30px;color:var(--ink);letter-spacing:-.02em;margin:2px 0 0}
+  .acl-hero-card .metric small{font-family:var(--body);font-weight:600;font-size:13px;color:#1faf52;margin-left:8px}
+  .acl-hero-chart{width:100%;height:118px;display:block;margin-top:8px}
+  .acl-hero-pill{
+    position:absolute;right:-14px;bottom:-16px;
+    background:var(--blue);color:#fff;font-size:13px;font-weight:700;
+    padding:11px 16px;border-radius:12px;box-shadow:0 14px 30px rgba(37,99,235,.4);
+  }
 
-  .adv-blocks{margin-top:46px}
-  .adv-block{
-    display:grid;grid-template-columns:210px 1fr;gap:44px;
-    padding:38px 0;border-top:1px solid rgba(12,28,64,.15);
+  /* ---------------- CARDS GRID ---------------- */
+  .acl-grid{display:grid;gap:24px}
+  .acl-grid-3{grid-template-columns:repeat(3,1fr)}
+  .acl-grid-4{grid-template-columns:repeat(4,1fr)}
+  .acl-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:30px;
+    box-shadow:0 12px 30px rgba(17,31,58,.05);
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
-  .adv-block:last-child{border-bottom:1px solid rgba(12,28,64,.15)}
-  .adv-block-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-ink)}
-  .adv-block-statement{font-family:var(--serif);font-size:clamp(20px,2.2vw,25px);line-height:1.18;color:var(--navy);margin-top:12px}
-  .adv-block-body{font-size:16.5px;line-height:1.72;color:var(--slate);max-width:60ch}
+  .acl-card:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(17,31,58,.10);border-color:#d7e2f5}
+  .acl-ic{width:52px;height:52px;border-radius:14px;background:var(--blue-soft);display:grid;place-items:center;color:var(--blue);margin-bottom:20px}
+  .acl-ic svg{width:26px;height:26px}
+  .acl-card h3{font-weight:700;font-size:19px;color:var(--ink);margin:0 0 10px;letter-spacing:-.01em}
+  .acl-card p{font-family:var(--body);font-size:15.5px;line-height:1.6;color:var(--slate);margin:0}
 
-  /* ---------------- ENTREGAS (navy, cláusulas) ---------------- */
-  .adv-deliver{color:var(--paper);padding:98px 0;background:linear-gradient(180deg,#0a1631,#0c1c40)}
-  .adv-clauses{margin-top:46px}
-  .adv-clause{
-    display:grid;grid-template-columns:96px 1fr;gap:30px;
-    padding:34px 0;border-top:1px solid rgba(255,255,255,.11);
-  }
-  .adv-clause:first-of-type{border-top:1px solid rgba(230,207,146,.4)}
-  .adv-clause-num{font-family:var(--serif);font-style:italic;font-size:42px;line-height:.9;color:var(--brass)}
-  .adv-clause h3{font-family:var(--serif);font-weight:500;font-size:23px;color:var(--paper);margin:2px 0 9px}
-  .adv-clause p{color:var(--mist);font-size:16px;line-height:1.66;max-width:62ch}
-  .adv-extra{
-    margin-top:40px;padding-top:26px;border-top:1px solid rgba(255,255,255,.11);
-    font-size:14.5px;color:#a9b7d6;font-family:var(--mono);letter-spacing:.01em;line-height:1.7;
-  }
-  .adv-extra b{color:var(--brass-2);font-weight:500}
+  /* Tags de serviços adicionais */
+  .acl-tags{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:center;margin-top:40px;font-family:var(--body)}
+  .acl-tags .t-label{font-weight:600;color:var(--ink);font-family:var(--sans)}
+  .acl-tag{background:#fff;border:1px solid var(--line);color:var(--slate);font-size:14px;padding:8px 16px;border-radius:999px}
+  .acl-tags .t-note{font-size:13px;color:#93a0b8}
 
-  /* ---------------- DEPOIMENTO EM VÍDEO (9:16) ---------------- */
-  .adv-vt{color:var(--paper);padding:96px 0;background:
-      radial-gradient(70% 60% at 12% 0%, rgba(47,95,224,.20), transparent 60%),
-      linear-gradient(180deg,#0a1020,#0c1c40)}
-  .adv-vt-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
-  .adv-vt h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.4vw,40px);line-height:1.12;color:var(--paper);margin:16px 0 0}
-  .adv-vt h2 em{color:var(--brass-2)}
-  .adv-vt p{font-size:17px;line-height:1.7;color:#cdd8f0;max-width:46ch;margin:20px 0 0}
-  .adv-cite{display:flex;align-items:center;gap:14px;margin-top:30px;padding-top:22px;border-top:1px solid rgba(230,207,146,.28)}
-  .adv-cite-seal{
-    width:46px;height:46px;border:1px solid var(--brass);border-radius:50%;
-    display:grid;place-items:center;font-family:var(--serif);font-style:italic;
-    font-size:19px;line-height:1;color:var(--brass-2);flex:none;padding-top:2px;
+  /* ---------------- VÍDEO 9:16 ---------------- */
+  .acl-vt-grid{
+    display:grid;grid-template-columns:1fr .84fr;gap:52px;align-items:center;
+    background:var(--blue-soft);border-radius:28px;padding:56px;
   }
-  .adv-cite b{display:block;font-size:15px;color:var(--paper)}
-  .adv-cite span{display:block;font-size:12.5px;color:#93a2c6;font-family:var(--mono);margin-top:2px}
-  .adv-stage{display:flex;justify-content:center}
-  .adv-frame{
-    position:relative;width:min(320px,84vw);aspect-ratio:9/16;
-    border-radius:6px;overflow:hidden;background:#070d1c;
-    border:1px solid rgba(230,207,146,.34);
-    box-shadow:0 34px 74px rgba(2,8,26,.62), 0 0 0 7px rgba(201,162,75,.06);
+  .acl-vt h2{font-weight:800;font-size:clamp(26px,3.2vw,38px);line-height:1.14;letter-spacing:-.02em;color:var(--ink);margin:14px 0 0}
+  .acl-vt p{font-family:var(--body);font-size:16.5px;line-height:1.65;color:var(--slate);max-width:44ch;margin:18px 0 0}
+  .acl-cite{display:flex;align-items:center;gap:14px;margin-top:28px;padding-top:22px;border-top:1px solid #d7e2f5}
+  .acl-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#60a5fa);display:grid;place-items:center;font-weight:700;font-size:18px;color:#fff;flex:none}
+  .acl-cite b{display:block;font-size:15px;color:var(--ink)}
+  .acl-cite span{display:block;font-family:var(--body);font-size:13px;color:#93a0b8}
+  .acl-stage{display:flex;justify-content:center}
+  .acl-frame{
+    position:relative;width:min(300px,80vw);aspect-ratio:9/16;
+    border-radius:24px;overflow:hidden;background:#0a1330;
+    border:6px solid #fff;box-shadow:0 26px 60px rgba(17,31,58,.22);
   }
-  .adv-frame video{width:100%;height:100%;object-fit:cover;display:block;background:#070d1c}
-  .adv-frame-tag{
-    position:absolute;top:14px;left:14px;z-index:2;
-    display:inline-flex;align-items:center;gap:7px;
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper);
-    background:rgba(7,13,28,.6);backdrop-filter:blur(6px);
-    border:1px solid rgba(230,207,146,.36);padding:7px 11px;border-radius:2px;
+  .acl-frame video{width:100%;height:100%;object-fit:cover;display:block;background:#0a1330}
+  .acl-frame-tag{
+    position:absolute;top:14px;left:14px;z-index:2;display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--body);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;
+    background:rgba(15,30,55,.6);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);padding:6px 11px;border-radius:999px;
   }
-  .adv-frame-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 3px rgba(201,162,75,.22)}
+  .acl-frame-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#22d3a5;box-shadow:0 0 0 3px rgba(34,211,165,.25)}
 
-  /* ---------------- CTA (papel) ---------------- */
-  .adv-cta{position:relative;background:var(--paper-2);padding:96px 0;text-align:center}
-  .adv-cta .adv-rule{margin:0 auto 22px}
-  .adv-cta .adv-eyebrow{color:var(--brass-ink)}
-  .adv-cta h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.8vw,44px);line-height:1.12;letter-spacing:-.01em;color:var(--navy);margin:16px auto 0;max-width:20ch}
-  .adv-cta p{font-size:17px;line-height:1.7;color:var(--slate);max-width:52ch;margin:20px auto 0}
-  .adv-cta .adv-cta-row{justify-content:center;margin-top:34px}
+  /* ---------------- CTA ---------------- */
+  .acl-cta-box{
+    background:linear-gradient(160deg,#0f1e37,#0c1830);
+    border-radius:28px;padding:72px 40px;text-align:center;color:#fff;position:relative;overflow:hidden;
+  }
+  .acl-cta-box::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 120% at 100% 0%, rgba(37,99,235,.35), transparent 55%);pointer-events:none}
+  .acl-cta-box > *{position:relative;z-index:1}
+  .acl-cta-box h2{font-weight:800;font-size:clamp(26px,3.4vw,40px);line-height:1.14;letter-spacing:-.02em;margin:0 auto;max-width:20ch}
+  .acl-cta-box p{font-family:var(--body);font-size:17px;line-height:1.6;color:#c2d0ec;max-width:50ch;margin:18px auto 0}
+  .acl-cta-ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:34px}
 
   /* ---------------- Responsivo ---------------- */
-  @media (max-width:900px){
-    .adv-hero-grid{grid-template-columns:1fr;gap:40px}
-    .adv-vt-grid{grid-template-columns:1fr;gap:40px;text-align:center}
-    .adv-vt p{margin-inline:auto}
-    .adv-cite{justify-content:center}
-    .adv-vt .adv-eyebrow,.adv-vt .adv-rule{margin-inline:auto}
-    .adv-block{grid-template-columns:1fr;gap:14px;padding:30px 0}
+  @media (max-width:960px){
+    .acl-hero-grid{grid-template-columns:1fr;gap:48px}
+    .acl-grid-4{grid-template-columns:repeat(2,1fr)}
+    .acl-grid-3{grid-template-columns:1fr}
+    .acl-vt-grid{grid-template-columns:1fr;gap:36px;padding:40px 28px;text-align:center}
+    .acl-vt p{margin-inline:auto}
+    .acl-cite{justify-content:center}
+    .acl-vt .acl-eyebrow{justify-content:center}
   }
   @media (max-width:560px){
-    .adv-hero{padding:130px 0 76px}
-    .adv-clause{grid-template-columns:64px 1fr;gap:18px}
-    .adv-clause-num{font-size:34px}
+    .acl-hero{padding:116px 0 80px}
+    .acl-grid-4{grid-template-columns:1fr}
+    .acl-section{padding:72px 0}
+    .acl-card{padding:26px}
   }
   @media (prefers-reduced-motion:reduce){
-    .adv *{animation:none!important;transition:none!important}
+    .acl .reveal{opacity:1;transform:none;transition:none}
+    .acl-btn,.acl-card{transition:none}
   }
   </style>
 </head>
@@ -289,139 +258,134 @@
     </div>
   </header>
 
-  <main class="adv">
+  <main class="acl">
 
     <!-- ================= HERO ================= -->
-    <section class="adv-hero adv-dark">
-      <div class="adv-wrap">
-        <p class="adv-crumb"><a href="/">Início</a> › Segmentos › Advocacia</p>
-
-        <div class="adv-hero-grid">
+    <section class="acl-hero acl-dark">
+      <div class="acl-wrap">
+        <div class="acl-hero-grid">
           <div>
-            <span class="adv-eyebrow">Segmento · Advocacia</span>
-            <h1>Cliente não contrata o advogado mais preparado. Contrata o que ele <em>encontra e confia</em>.</h1>
-            <p class="adv-lead">
-              Antes de ligar, o cliente pesquisa. Abre seu Instagram, lê as avaliações no Google, compara.
-              Se o escritório não passa segurança nesse primeiro olhar, ele fecha com quem passa, mesmo
-              que você seja o mais gabaritado da lista. A Aclive cuida dessa primeira impressão para
-              ela trabalhar a seu favor.
+            <p class="acl-crumb reveal"><a href="/">Início</a> › Segmentos › Advocacia</p>
+            <span class="acl-eyebrow reveal">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8h14M7 8l-2 6a3 3 0 0 0 6 0L9 8m8 0l-2 6a3 3 0 0 0 6 0l-2-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Marketing para Advocacia
+            </span>
+            <h1 class="reveal">Autoridade digital para o seu <span class="hl">escritório de advocacia</span></h1>
+            <p class="acl-hero-lead reveal">
+              O cliente escolhe o advogado que passa mais confiança no digital. A Aclive constrói essa
+              presença para você atrair clientes qualificados e depender menos de indicação.
             </p>
-            <span class="adv-ref">Marketing dentro do <b>Provimento nº 205/2021</b> da OAB</span>
-            <div class="adv-cta-row">
-              <a href="https://wa.me/5531993667472?text=Ol%C3%A1!%20Tenho%20um%20escrit%C3%B3rio%20de%20advocacia%20e%20quero%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Aclive." class="adv-btn adv-btn-primary" target="_blank" rel="noopener">
+            <div class="acl-aud reveal">
+              <span><svg viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Advogados autônomos</span>
+              <span><svg viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Escritórios de advocacia</span>
+              <span><svg viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Sociedades e associados</span>
+            </div>
+            <div class="acl-hero-ctas reveal">
+              <a href="https://wa.me/5531993667472?text=Ol%C3%A1!%20Tenho%20um%20escrit%C3%B3rio%20de%20advocacia%20e%20quero%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Aclive." class="acl-btn acl-btn-primary" target="_blank" rel="noopener">
                 Falar com a Aclive
-                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 16 L16 4 M8 4 h8 v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
-              <a href="#entregas" class="adv-btn adv-btn-ghost">Ver o que entregamos</a>
+              <a href="#entregas" class="acl-btn acl-btn-ghost-dark">Ver o que entregamos</a>
             </div>
           </div>
 
-          <aside class="adv-sumario" aria-label="Sumário do que a Aclive faz">
-            <h2>Sumário</h2>
-            <div class="adv-sum-item"><span class="adv-sum-num">I</span><span class="adv-sum-txt">Produção de vídeo<small>Autoridade sem parecer propaganda</small></span></div>
-            <div class="adv-sum-item"><span class="adv-sum-num">II</span><span class="adv-sum-txt">Social media no padrão da OAB<small>Sobriedade que a Ordem exige</small></span></div>
-            <div class="adv-sum-item"><span class="adv-sum-num">III</span><span class="adv-sum-txt">Tráfego pago e captação<small>Cliente certo chegando toda semana</small></span></div>
-            <div class="adv-sum-item"><span class="adv-sum-num">IV</span><span class="adv-sum-txt">Estrutura comercial<small>Nenhum contato esfriando esquecido</small></span></div>
-          </aside>
+          <div class="reveal">
+            <div class="acl-hero-card">
+              <div class="acl-hero-card-top">
+                <b>Presença do escritório</b>
+                <span class="live">ao vivo</span>
+              </div>
+              <p class="metric">+128 <small>▲ novos contatos</small></p>
+              <svg class="acl-hero-chart" viewBox="0 0 320 118" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="acg" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#2563eb" stop-opacity=".22"/>
+                    <stop offset="1" stop-color="#2563eb" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0 100 L45 92 L90 96 L135 74 L180 80 L225 50 L270 56 L320 18" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M0 100 L45 92 L90 96 L135 74 L180 80 L225 50 L270 56 L320 18 L320 118 L0 118 Z" fill="url(#acg)"/>
+                <circle cx="320" cy="18" r="5" fill="#2563eb"/>
+              </svg>
+              <span class="acl-hero-pill">cliente certo toda semana</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= DIAGNÓSTICO ================= -->
-    <section class="adv-diag" id="diagnostico">
-      <div class="adv-wrap">
-        <div class="adv-head">
-          <span class="adv-eyebrow">O diagnóstico</span>
-          <h2 class="adv-h2">Por que bons escritórios passam <em>despercebidos</em></h2>
-          <div class="adv-rule"></div>
+    <!-- ================= O QUE RESOLVEMOS ================= -->
+    <section class="acl-section" id="solucoes">
+      <div class="acl-wrap">
+        <div class="acl-head reveal">
+          <h2 class="acl-h2">O que a Aclive <span class="hl">resolve</span> no seu escritório</h2>
+          <p class="acl-sub">Três travas comuns na advocacia, e o que fazemos com cada uma.</p>
         </div>
 
-        <div class="adv-blocks">
-          <article class="adv-block">
-            <div>
-              <span class="adv-block-label">Autoridade</span>
-              <p class="adv-block-statement">Você é referência. O perfil não conta isso.</p>
-            </div>
-            <p class="adv-block-body">
-              Anos de bagagem e uma página que não diz no que você é bom. Quem chega não entende com quem
-              está falando e vai embora. A gente organiza sua presença para que isso fique claro em
-              segundos: vídeo, cortes e conteúdo que explica direito no idioma de quem não é do meio.
-            </p>
+        <div class="acl-grid acl-grid-3">
+          <article class="acl-card reveal">
+            <span class="acl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 4 6.5v5c0 4.5 3.3 7.6 8 9 4.7-1.4 8-4.5 8-9v-5L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>Falta de autoridade digital</h3>
+            <p>Você tem bagagem técnica, mas o perfil não mostra. A gente transforma isso em vídeo e conteúdo que geram confiança.</p>
           </article>
 
-          <article class="adv-block">
-            <div>
-              <span class="adv-block-label">Previsibilidade</span>
-              <p class="adv-block-statement">Indicação é ótima. Depender só dela, não.</p>
-            </div>
-            <p class="adv-block-body">
-              Mês cheio, mês vazio, e nunca dá para saber qual vem. Quando o telefone só toca por
-              indicação, quem decide o seu crescimento é o acaso. Montamos um canal que você controla,
-              com o cliente certo te encontrando toda semana.
-            </p>
+          <article class="acl-card reveal">
+            <span class="acl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 18c0-3 3.5-4.5 6-4.5S15 15 15 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M16 13c2.2.3 4 1.7 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M15.5 8.2A2.8 2.8 0 0 0 17 3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <h3>Dependência de indicação</h3>
+            <p>Mês bom, mês fraco. Criamos um canal previsível, que você controla, com clientes chegando toda semana.</p>
           </article>
 
-          <article class="adv-block">
-            <div>
-              <span class="adv-block-label">Direção</span>
-              <p class="adv-block-statement">Postar sem rumo é volume sem retorno.</p>
-            </div>
-            <p class="adv-block-body">
-              Conteúdo solto cansa a equipe e não traz processo novo. Partimos da sua área de atuação e do
-              cliente que você quer atender para decidir o que dizer, para quem e com qual objetivo. Cada
-              post passa a ter um motivo para existir.
-            </p>
+          <article class="acl-card reveal">
+            <span class="acl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16l5-5 4 4 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 8h5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>Perfil sem posicionamento</h3>
+            <p>Postar sem estratégia não traz cliente. Cada conteúdo passa a ter direção e um objetivo claro.</p>
           </article>
         </div>
       </div>
     </section>
 
     <!-- ================= O QUE ENTREGAMOS ================= -->
-    <section class="adv-deliver adv-dark" id="entregas">
-      <div class="adv-wrap">
-        <div class="adv-head">
-          <span class="adv-eyebrow">O que entregamos</span>
-          <h2 class="adv-h2">O trabalho, <em>cláusula por cláusula</em></h2>
-          <div class="adv-rule"></div>
+    <section class="acl-section light" id="entregas">
+      <div class="acl-wrap">
+        <div class="acl-head wide reveal">
+          <h2 class="acl-h2">O que a Aclive <span class="hl">entrega</span> para a advocacia</h2>
+          <p class="acl-sub">Da produção de conteúdo à organização comercial, tudo trabalhando junto.</p>
         </div>
 
-        <div class="adv-clauses">
-          <article class="adv-clause">
-            <span class="adv-clause-num">I</span>
-            <div>
-              <h3>Produção de vídeo</h3>
-              <p>Gravação, edição e cortes pensados para construir autoridade. O advogado por trás do escritório aparece com naturalidade, sem soar propaganda de rua.</p>
-            </div>
+        <div class="acl-grid acl-grid-4">
+          <article class="acl-card reveal">
+            <span class="acl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10 9.5v5l4-2.5-4-2.5Z" fill="currentColor"/></svg></span>
+            <h3>Produção audiovisual</h3>
+            <p>Vídeos e reels que mostram sua autoridade e humanizam o escritório.</p>
           </article>
 
-          <article class="adv-clause">
-            <span class="adv-clause-num">II</span>
-            <div>
-              <h3>Social media no padrão da OAB</h3>
-              <p>Planejamento e posicionamento com conteúdo que respeita o Provimento 205/2021. A sobriedade que a Ordem cobra, com a presença que o cliente percebe.</p>
-            </div>
+          <article class="acl-card reveal">
+            <span class="acl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9v6h3l6 4V5L7 9H4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M17 9c1 1 1 5 0 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <h3>Social media estratégico</h3>
+            <p>Planejamento e posicionamento para fortalecer a marca do advogado.</p>
           </article>
 
-          <article class="adv-clause">
-            <span class="adv-clause-num">III</span>
-            <div>
-              <h3>Tráfego pago e captação</h3>
-              <p>Campanhas para colocar o escritório na frente de quem já procura um advogado, com a conversa começando direto no WhatsApp de quem atende.</p>
-            </div>
+          <article class="acl-card reveal">
+            <span class="acl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg></span>
+            <h3>Tráfego pago</h3>
+            <p>Campanhas que captam leads e levam a conversa direto para o WhatsApp.</p>
           </article>
 
-          <article class="adv-clause">
-            <span class="adv-clause-num">IV</span>
-            <div>
-              <h3>Estrutura comercial</h3>
-              <p>Organização dos contatos, CRM, roteiro de atendimento e follow-up. O lead entra e é acompanhado até virar reunião, sem esfriar esquecido numa caixa de mensagem.</p>
-            </div>
+          <article class="acl-card reveal">
+            <span class="acl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            <h3>Estrutura comercial</h3>
+            <p>CRM, scripts e follow-up para nenhum lead esfriar esquecido.</p>
           </article>
         </div>
 
-        <p class="adv-extra">
-          Também fazemos, contratados à parte: <b>site</b>, <b>landing page</b>, <b>SEO jurídico</b> e <b>automações</b>.
-        </p>
+        <div class="acl-tags reveal">
+          <span class="t-label">Também fazemos:</span>
+          <span class="acl-tag">Sites</span>
+          <span class="acl-tag">Landing pages</span>
+          <span class="acl-tag">SEO jurídico</span>
+          <span class="acl-tag">Automação</span>
+          <span class="t-note">Contratados à parte.</span>
+        </div>
       </div>
     </section>
 
@@ -430,29 +394,28 @@
          Vídeo em: /segmentos/advocacia/video/depoimento.mp4
          (capa opcional em video/poster.jpg).
          ============================================================ -->
-    <section class="adv-vt adv-dark" id="depoimento-video">
-      <div class="adv-wrap">
-        <div class="adv-vt-grid">
+    <section class="acl-section acl-vt" id="depoimento-video">
+      <div class="acl-wrap">
+        <div class="acl-vt-grid">
           <div>
-            <span class="adv-eyebrow">Depoimento</span>
-            <h2>A gente prefere que o <em>cliente conte</em></h2>
-            <p>
-              Prometer resultado qualquer um promete. Aqui você ouve, na voz de quem já trabalha
-              com a Aclive, o que mudou na prática depois que a presença do escritório passou a ser
-              levada a sério.
+            <span class="acl-eyebrow reveal">Depoimento</span>
+            <h2 class="reveal">Quem confiou na Aclive <span class="hl">recomenda</span></h2>
+            <p class="reveal">
+              A gente prefere deixar o cliente falar. Ouça de quem já trabalha com a Aclive o que mudou
+              na presença e no dia a dia do escritório.
             </p>
-            <div class="adv-cite">
-              <span class="adv-cite-seal">A</span>
+            <div class="acl-cite reveal">
+              <div class="acl-avatar">A</div>
               <div>
                 <b>Cliente Aclive</b>
-                <span>Advocacia · troque pelo nome e a área</span>
+                <span>Advocacia · troque pelo nome e a área do cliente</span>
               </div>
             </div>
           </div>
 
-          <div class="adv-stage">
-            <div class="adv-frame">
-              <span class="adv-frame-tag">Depoimento</span>
+          <div class="acl-stage reveal">
+            <div class="acl-frame">
+              <span class="acl-frame-tag">Depoimento</span>
               <video controls playsinline preload="metadata" poster="video/poster.jpg">
                 <source src="video/depoimento.mp4" type="video/mp4">
                 Seu navegador não suporta vídeo. Assista pelo WhatsApp.
@@ -464,18 +427,18 @@
     </section>
 
     <!-- ================= CTA FINAL ================= -->
-    <section class="adv-cta">
-      <div class="adv-wrap">
-        <div class="adv-rule"></div>
-        <span class="adv-eyebrow">Próximo passo</span>
-        <h2>Vamos deixar seu escritório fácil de <em>encontrar e de confiar?</em></h2>
-        <p>Manda uma mensagem. Numa conversa rápida a gente mostra como ficaria a presença do seu escritório e por onde começa.</p>
-        <div class="adv-cta-row">
-          <a href="https://wa.me/5531993667472?text=Ol%C3%A1!%20Tenho%20um%20escrit%C3%B3rio%20de%20advocacia%20e%20quero%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Aclive." class="adv-btn adv-btn-wa" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.3 1.6Z"/></svg>
-            Chamar no WhatsApp
-          </a>
-          <a href="/#contato" class="adv-btn adv-btn-dark">Preencher formulário</a>
+    <section class="acl-section" style="padding-top:0">
+      <div class="acl-wrap">
+        <div class="acl-cta-box reveal">
+          <h2>Pronto para colocar seu escritório <span class="hl">em aclive?</span></h2>
+          <p>Fale com a nossa equipe e descubra como construir autoridade digital e gerar demanda constante para o seu escritório, sem depender só de indicação.</p>
+          <div class="acl-cta-ctas">
+            <a href="https://wa.me/5531993667472?text=Ol%C3%A1!%20Tenho%20um%20escrit%C3%B3rio%20de%20advocacia%20e%20quero%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Aclive." class="acl-btn acl-btn-wa" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.3 1.6Z"/></svg>
+              Chamar no WhatsApp
+            </a>
+            <a href="/#contato" class="acl-btn acl-btn-ghost-dark">Preencher formulário</a>
+          </div>
         </div>
       </div>
     </section>
@@ -502,6 +465,22 @@
   <a href="https://wa.me/5531993667472?text=Ol%C3%A1!%20Tenho%20um%20escrit%C3%B3rio%20de%20advocacia%20e%20quero%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Aclive." class="wa-float" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.3 1.6Z"/></svg>
   </a>
+
+  <!-- Reveal ao rolar (autossuficiente: se o JS falhar, o conteúdo aparece normalmente) -->
+  <script>
+  (function(){
+    var root = document.querySelector('.acl');
+    if(!root) return;
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    root.classList.add('anim-ready');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+    root.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  })();
+  </script>
 
   <script src="/script.js"></script>
 </body>
