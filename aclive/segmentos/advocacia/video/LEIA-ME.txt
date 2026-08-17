@@ -1,0 +1,23 @@
+PASTA DO VÍDEO DE DEPOIMENTO — Advocacia (Aclive)
+==================================================
+
+Coloque aqui o vídeo do depoimento do cliente.
+
+ARQUIVOS QUE A PÁGINA ESPERA:
+  depoimento.mp4   -> o vídeo (formato vertical 9:16). OBRIGATÓRIO.
+  poster.jpg       -> imagem de capa que aparece antes de dar play. OPCIONAL.
+
+COMO SUBIR (Hostinger):
+  1. Entre em public_html/segmentos/advocacia/video/
+  2. Faça upload do arquivo com o nome exato: depoimento.mp4
+  3. (Opcional) suba também uma capa chamada poster.jpg
+  4. Dê Ctrl + F5 na página de advocacia.
+
+DICAS:
+  - Formato vertical 9:16 (ex.: 1080x1920), MP4 (H.264).
+  - Comprima o vídeo para carregar rápido: ideal abaixo de 20-30 MB.
+  - Se o vídeo for muito pesado para o File Manager, hospede no YouTube
+    (não listado) e peça para trocar por um embed.
+
+PARA TROCAR O DEPOIMENTO:
+  Basta subir um novo depoimento.mp4 com o mesmo nome (substitui o antigo).

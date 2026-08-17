@@ -1,0 +1,155 @@
+<!-- ============================================================
+     SEÇÃO: DEPOIMENTO EM VÍDEO (9:16) — Advocacia
+     ------------------------------------------------------------
+     COMO USAR:
+     1. Suba o vídeo em: public_html/segmentos/advocacia/video/depoimento.mp4
+        (opcional) uma capa em: video/poster.jpg
+     2. Copie TODO o bloco abaixo (do <section ...> até </section>)
+        e cole no seu index.html da advocacia LOGO DEPOIS da seção
+        "O que entregamos" (a que tem id="entregas"), antes da seção
+        de chamada final (a "seg-cta").
+     3. Salve e dê Ctrl + F5 na página.
+
+     Observação: este bloco é autossuficiente (traz o próprio <style>),
+     então funciona mesmo sem mexer no seu style.css.
+============================================================ -->
+<section class="vt-wrap" id="depoimento-video">
+  <style>
+    .vt-wrap{
+      background:var(--navy,#050e2b);
+      color:#eaf1ff;
+      padding:96px 24px;
+      position:relative;
+      overflow:hidden;
+    }
+    .vt-wrap::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(60% 60% at 15% 0%, rgba(37,99,235,.28), transparent 60%),
+        radial-gradient(50% 50% at 100% 100%, rgba(96,165,250,.18), transparent 60%);
+      pointer-events:none;
+    }
+    .vt-inner{
+      position:relative; z-index:1;
+      max-width:1080px; margin:0 auto;
+      display:grid; gap:48px;
+      grid-template-columns:1.05fr .95fr;
+      align-items:center;
+    }
+    .vt-eyebrow{
+      display:inline-flex; align-items:center; gap:8px;
+      font:600 13px/1 var(--font-display,'Sora',sans-serif);
+      letter-spacing:.14em; text-transform:uppercase;
+      color:#9cc0ff;
+      background:rgba(96,165,250,.12);
+      border:1px solid rgba(96,165,250,.28);
+      padding:8px 14px; border-radius:999px;
+      margin-bottom:22px;
+    }
+    .vt-eyebrow::before{
+      content:""; width:7px; height:7px; border-radius:50%;
+      background:#60a5fa; box-shadow:0 0 0 4px rgba(96,165,250,.22);
+    }
+    .vt-title{
+      font:600 clamp(28px,4vw,44px)/1.08 var(--font-display,'Sora',sans-serif);
+      letter-spacing:-.02em; margin:0 0 18px;
+    }
+    .vt-title em{
+      font-family:var(--font-serif,'Instrument Serif',serif);
+      font-style:italic; font-weight:400; color:#9cc0ff;
+    }
+    .vt-lead{
+      font:400 clamp(16px,1.6vw,18px)/1.7 var(--font-display,'Sora',sans-serif);
+      color:#c3d3f2; margin:0 0 28px; max-width:46ch;
+    }
+    .vt-cite{
+      display:flex; align-items:center; gap:14px;
+      padding-top:22px; margin-top:6px;
+      border-top:1px solid rgba(255,255,255,.12);
+    }
+    .vt-avatar{
+      width:46px; height:46px; border-radius:50%;
+      background:linear-gradient(135deg,#2563eb,#60a5fa);
+      display:grid; place-items:center;
+      font:700 18px var(--font-display,'Sora',sans-serif);
+      color:#fff; flex:none;
+    }
+    .vt-cite b{ display:block; font-size:15px; color:#eaf1ff; }
+    .vt-cite span{ display:block; font-size:13px; color:#9fb3d9; }
+
+    /* Coluna do vídeo (9:16) */
+    .vt-stage{ display:flex; justify-content:center; }
+    .vt-frame{
+      position:relative;
+      width:min(320px,84vw);
+      aspect-ratio:9/16;
+      border-radius:26px;
+      overflow:hidden;
+      background:#0a1330;
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 30px 70px rgba(2,8,26,.6), 0 0 0 8px rgba(255,255,255,.03);
+    }
+    .vt-frame video{
+      width:100%; height:100%;
+      object-fit:cover; display:block;
+      background:#0a1330;
+    }
+    .vt-badge{
+      position:absolute; top:14px; left:14px; z-index:2;
+      display:inline-flex; align-items:center; gap:6px;
+      font:600 11px/1 var(--font-display,'Sora',sans-serif);
+      letter-spacing:.08em; text-transform:uppercase;
+      color:#fff; background:rgba(5,14,43,.55);
+      backdrop-filter:blur(6px);
+      border:1px solid rgba(255,255,255,.2);
+      padding:7px 11px; border-radius:999px;
+    }
+    .vt-badge::before{
+      content:""; width:6px; height:6px; border-radius:50%;
+      background:#22d3a5; box-shadow:0 0 0 3px rgba(34,211,165,.25);
+    }
+
+    @media (max-width:820px){
+      .vt-inner{ grid-template-columns:1fr; gap:36px; text-align:center; }
+      .vt-lead{ margin-inline:auto; }
+      .vt-cite{ justify-content:center; }
+      .vt-eyebrow{ margin-inline:auto; }
+    }
+  </style>
+
+  <div class="vt-inner">
+    <div class="vt-copy">
+      <span class="vt-eyebrow">Depoimento real</span>
+      <h2 class="vt-title">Quem confiou na Aclive <em>recomenda</em></h2>
+      <p class="vt-lead">
+        Resultado não se promete, se mostra. Ouça de quem já está do
+        outro lado da subida o que muda quando o marketing do escritório
+        passa a trabalhar com estratégia, previsibilidade e acompanhamento
+        de verdade.
+      </p>
+      <div class="vt-cite">
+        <div class="vt-avatar">A</div>
+        <div>
+          <b>Cliente Aclive</b>
+          <span>Advocacia · troque por nome e área do cliente</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="vt-stage">
+      <div class="vt-frame">
+        <span class="vt-badge">Cliente Aclive</span>
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster="video/poster.jpg">
+          <source src="video/depoimento.mp4" type="video/mp4">
+          Seu navegador não suporta vídeo. Assista pelo WhatsApp.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===================== FIM DA SEÇÃO DE VÍDEO ===================== -->
