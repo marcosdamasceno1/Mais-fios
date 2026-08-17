@@ -85,6 +85,9 @@
   .acl-head.wide{max-width:780px}
   .acl-h2{font-weight:800;font-size:clamp(28px,3.6vw,42px);line-height:1.12;letter-spacing:-.02em;color:var(--ink);margin:0}
   .acl-sub{font-family:var(--body);font-size:17px;line-height:1.65;color:var(--slate);margin:16px auto 0;max-width:52ch}
+  /* Seções sem fundo claro herdam o fundo escuro do site: texto em branco, destaque azul */
+  .acl-section:not(.light) .acl-h2{color:#ffffff}
+  .acl-section:not(.light) .acl-sub{color:#aebbd6}
 
   /* Botões */
   .acl-btn{
@@ -125,6 +128,8 @@
   .acl-aud span{display:inline-flex;align-items:center;gap:8px}
   .acl-aud svg{width:15px;height:15px;color:#6ea0ff}
   .acl-hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin:34px 0 0}
+  /* CTA centralizado ao fim de cada seção */
+  .acl-cta-center{display:flex;justify-content:center;margin-top:48px}
 
   /* Card visual do hero */
   .acl-hero-card{
@@ -341,6 +346,13 @@
             <p>Postar sem estratégia não traz cliente. Cada conteúdo passa a ter direção e um objetivo claro.</p>
           </article>
         </div>
+
+        <div class="acl-cta-center reveal">
+          <a href="https://wa.me/5531993667472?text=Ol%C3%A1!%20Tenho%20um%20escrit%C3%B3rio%20de%20advocacia%20e%20quero%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Aclive." class="acl-btn acl-btn-primary" target="_blank" rel="noopener">
+            Falar com a Aclive
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -386,6 +398,13 @@
           <span class="acl-tag">Automação</span>
           <span class="t-note">Contratados à parte.</span>
         </div>
+
+        <div class="acl-cta-center reveal">
+          <a href="https://wa.me/5531993667472?text=Ol%C3%A1!%20Tenho%20um%20escrit%C3%B3rio%20de%20advocacia%20e%20quero%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Aclive." class="acl-btn acl-btn-primary" target="_blank" rel="noopener">
+            Falar com a Aclive
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -422,6 +441,13 @@
               </video>
             </div>
           </div>
+        </div>
+
+        <div class="acl-cta-center reveal">
+          <a href="https://wa.me/5531993667472?text=Ol%C3%A1!%20Tenho%20um%20escrit%C3%B3rio%20de%20advocacia%20e%20quero%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Aclive." class="acl-btn acl-btn-primary" target="_blank" rel="noopener">
+            Falar com a Aclive
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
       </div>
     </section>
