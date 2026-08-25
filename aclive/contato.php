@@ -30,12 +30,9 @@ $CRM_WEBHOOK_TOKEN = '7655040b-9ae1-4271-99c7-f9ab388444d0';
 // ============================================================
 if (isset($_GET['ping']) && $_GET['ping'] === 'aclive') {
     header('Content-Type: text/plain; charset=utf-8');
-    echo "contato.php ATIVO — versao com CRM (v2)\n";
+    echo "contato.php ATIVO — versao com CRM (v3, campos em ingles)\n";
     echo "cURL: " . (function_exists('curl_init') ? 'SIM' : 'NAO') . "\n";
-    echo "allow_url_fopen: " . (ini_get('allow_url_fopen') ? 'SIM' : 'NAO') . "\n";
-    echo "Webhook configurado: " . ($CRM_WEBHOOK_URL !== '' ? 'SIM' : 'NAO') . "\n\n";
-    diag_webhook($CRM_WEBHOOK_URL, $CRM_WEBHOOK_TOKEN);
-    echo "\n=== FIM. Copie tudo e envie para analise. ===\n";
+    echo "Webhook configurado: " . ($CRM_WEBHOOK_URL !== '' ? 'SIM' : 'NAO') . "\n";
     exit;
 }
 
@@ -75,14 +72,14 @@ $origem   = mb_substr($origem, 0, 60);
 // 1) Envia o lead para o CRM (webhook), se configurado.
 //    É "à prova de falhas": se o CRM cair, o e-mail ainda vai.
 // ------------------------------------------------------------
+// O webhook do CRM espera os campos em INGLÊS (name/phone/email/message).
 $crm_ok = enviar_para_crm($CRM_WEBHOOK_URL, $CRM_WEBHOOK_TOKEN, [
-    'nome'       => $nome,
-    'telefone'   => $telefone,
-    'email'      => $email,
-    'mensagem'   => $mensagem,
-    'origem'     => $origem,
-    'token'      => $CRM_WEBHOOK_TOKEN, // caso o webhook espere o token no corpo
-    'enviado_em' => date('c'),
+    'name'    => $nome,
+    'phone'   => $telefone,
+    'email'   => $email,
+    'message' => $mensagem,
+    'source'  => $origem,
+    'token'   => $CRM_WEBHOOK_TOKEN,
 ]);
 
 // ------------------------------------------------------------
@@ -155,55 +152,4 @@ function enviar_para_crm($url, $token, array $payload) {
     ]]);
     $res = @file_get_contents($url, false, $ctx);
     return $res !== false;
-}
-
-/**
- * Diagnóstico: envia um lead de TESTE em 3 formatos e imprime a resposta.
- */
-function diag_webhook($url, $token) {
-    if ($url === '') { echo "Webhook nao configurado.\n"; return; }
-
-    $tentativas = [
-        ['rotulo' => 'Formato 1: JSON (nome/telefone/email/mensagem)',
-         'ctype'  => 'application/json',
-         'body'   => json_encode(['nome'=>'TESTE Aclive','telefone'=>'31999999999','email'=>'teste@aclive.com','mensagem'=>'teste 1','origem'=>'Advocacia','token'=>$token])],
-        ['rotulo' => 'Formato 2: JSON (name/phone/email/message)',
-         'ctype'  => 'application/json',
-         'body'   => json_encode(['name'=>'TESTE Aclive','phone'=>'31999999999','email'=>'teste@aclive.com','message'=>'teste 2','source'=>'Advocacia','token'=>$token])],
-        ['rotulo' => 'Formato 3: form-urlencoded (pt + en)',
-         'ctype'  => 'application/x-www-form-urlencoded',
-         'body'   => http_build_query(['nome'=>'TESTE Aclive','name'=>'TESTE Aclive','telefone'=>'31999999999','phone'=>'31999999999','email'=>'teste@aclive.com','mensagem'=>'teste 3','message'=>'teste 3','origem'=>'Advocacia','token'=>$token])],
-    ];
-
-    foreach ($tentativas as $t) {
-        echo "------------------------------------------------------------\n";
-        echo ">> " . $t['rotulo'] . "\n";
-        $headers = ['Content-Type: ' . $t['ctype'], 'Authorization: Bearer ' . $token];
-        if (function_exists('curl_init')) {
-            $ch = curl_init($url);
-            curl_setopt_array($ch, [
-                CURLOPT_POST           => true,
-                CURLOPT_POSTFIELDS     => $t['body'],
-                CURLOPT_HTTPHEADER     => $headers,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_TIMEOUT        => 15,
-            ]);
-            $resp = curl_exec($ch);
-            $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            $err  = curl_error($ch);
-            curl_close($ch);
-            echo "HTTP: $code\n";
-            if ($err !== '') echo "Erro cURL: $err\n";
-            echo "Resposta: $resp\n\n";
-        } else {
-            $ctx = stream_context_create(['http' => [
-                'method' => 'POST', 'header' => implode("\r\n", $headers),
-                'content' => $t['body'], 'timeout' => 15, 'ignore_errors' => true,
-            ]]);
-            $resp = @file_get_contents($url, false, $ctx);
-            $code = isset($http_response_header[0]) ? $http_response_header[0] : 'sem resposta';
-            echo "HTTP: $code\n";
-            echo "Resposta: " . var_export($resp, true) . "\n\n";
-        }
-    }
 }
