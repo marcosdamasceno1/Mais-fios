@@ -213,6 +213,31 @@
   .acl-cta-box p{font-family:var(--body);font-size:17px;line-height:1.6;color:#c2d0ec;max-width:50ch;margin:18px auto 0}
   .acl-cta-ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:34px}
 
+  /* ---------------- FORMULÁRIO ---------------- */
+  .acl-form{
+    max-width:720px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:22px;
+    padding:36px;box-shadow:0 16px 40px rgba(17,31,58,.07);
+    display:grid;grid-template-columns:1fr 1fr;gap:18px;position:relative;
+  }
+  .acl-field{display:flex;flex-direction:column;gap:7px}
+  .acl-field-full{grid-column:1 / -1}
+  .acl-field label{font-family:var(--sans);font-weight:600;font-size:13.5px;color:var(--ink)}
+  .acl-field input,.acl-field textarea{
+    font-family:var(--body);font-size:15px;color:var(--ink);background:#f7f9fd;
+    border:1px solid var(--line);border-radius:12px;padding:13px 15px;outline:none;
+    transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .acl-field input::placeholder,.acl-field textarea::placeholder{color:#9aa7bf}
+  .acl-field input:focus,.acl-field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.14);background:#fff}
+  .acl-field textarea{resize:vertical;min-height:112px}
+  .acl-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .acl-form-submit{grid-column:1 / -1;justify-content:center;width:100%;margin-top:4px;border:none}
+  .acl-form-status{grid-column:1 / -1;margin:4px 0 0;font-family:var(--body);font-size:14px;text-align:center;color:var(--slate)}
+  .acl-form-status.ok{color:#1faf52}
+  .acl-form-status.err{color:#e2483d}
+  .acl-form-note{grid-column:1 / -1;margin:2px 0 0;font-family:var(--body);font-size:12.5px;color:#93a0b8;text-align:center}
+  @media (max-width:560px){.acl-form{grid-template-columns:1fr;padding:26px}}
+
   /* ---------------- Responsivo ---------------- */
   @media (max-width:960px){
     .acl-hero-grid{grid-template-columns:1fr;gap:48px}
@@ -490,9 +515,48 @@
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.3 1.6Z"/></svg>
               Chamar no WhatsApp
             </a>
-            <a href="/#contato" class="acl-btn acl-btn-ghost-dark">Preencher formulário</a>
+            <a href="#form-adv" class="acl-btn acl-btn-ghost-dark">Preencher formulário</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ================= FORMULÁRIO (PHP) ================= -->
+    <section class="acl-section light" id="form-adv">
+      <div class="acl-wrap">
+        <div class="acl-head reveal">
+          <h2 class="acl-h2">Peça seu <span class="hl">diagnóstico</span></h2>
+          <p class="acl-sub">Preencha os dados e a nossa equipe entra em contato para entender o seu escritório.</p>
+        </div>
+
+        <form class="acl-form reveal" id="advForm" action="/contato.php" method="post" novalidate>
+          <div class="acl-field">
+            <label for="adv-nome">Nome</label>
+            <input id="adv-nome" name="nome" type="text" required placeholder="Seu nome">
+          </div>
+          <div class="acl-field">
+            <label for="adv-tel">WhatsApp</label>
+            <input id="adv-tel" name="telefone" type="tel" required placeholder="(00) 00000-0000">
+          </div>
+          <div class="acl-field acl-field-full">
+            <label for="adv-email">E-mail</label>
+            <input id="adv-email" name="email" type="email" required placeholder="voce@email.com">
+          </div>
+          <div class="acl-field acl-field-full">
+            <label for="adv-msg">Mensagem</label>
+            <textarea id="adv-msg" name="mensagem" rows="4" placeholder="Conte um pouco sobre o seu escritório e o que você precisa."></textarea>
+          </div>
+
+          <!-- Campo anti-spam (invisível). Não preencher. -->
+          <input type="text" name="site" class="acl-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <button type="submit" class="acl-btn acl-btn-primary acl-form-submit">
+            Quero meu diagnóstico
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="acl-form-status" id="advFormStatus" role="status"></p>
+          <p class="acl-form-note">Seus dados são usados apenas para este contato.</p>
+        </form>
       </div>
     </section>
 
@@ -518,6 +582,38 @@
   <a href="https://wa.me/5531993667472?text=Ol%C3%A1!%20Tenho%20um%20escrit%C3%B3rio%20de%20advocacia%20e%20quero%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Aclive." class="wa-float" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.3 1.6Z"/></svg>
   </a>
+
+  <!-- Envio do formulário para o contato.php (sem recarregar a página) -->
+  <script>
+  (function(){
+    var f = document.getElementById('advForm');
+    if(!f) return;
+    var status = document.getElementById('advFormStatus');
+    f.addEventListener('submit', async function(e){
+      e.preventDefault();
+      if(!f.checkValidity()){ f.reportValidity(); return; }
+      var btn = f.querySelector('.acl-form-submit');
+      btn.disabled = true; btn.style.opacity = '.7';
+      status.className = 'acl-form-status'; status.textContent = 'Enviando...';
+      try{
+        var r = await fetch(f.action, { method:'POST', body:new FormData(f), headers:{ Accept:'application/json' } });
+        var data = await r.json();
+        if(data.ok){
+          status.className = 'acl-form-status ok';
+          status.textContent = 'Recebido! Nossa equipe entra em contato em breve. 🚀';
+          f.reset();
+        } else {
+          throw new Error(data.erro || 'Falha no envio');
+        }
+      } catch(err){
+        status.className = 'acl-form-status err';
+        status.textContent = 'Não foi possível enviar agora. Chame a gente no WhatsApp!';
+      } finally {
+        btn.disabled = false; btn.style.opacity = '';
+      }
+    });
+  })();
+  </script>
 
   <!-- Reveal ao rolar (autossuficiente: se o JS falhar, o conteúdo aparece normalmente) -->
   <script>
