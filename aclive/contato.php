@@ -17,10 +17,10 @@ $destinatario = 'digitalaclive@gmail.com';
 // --- Integração com CRM via webhook (opcional) ---
 // Cole a URL do webhook do seu CRM (Zapier, Make, RD, etc.).
 // Deixe em branco ('') para desligar o envio ao CRM.
-$CRM_WEBHOOK_URL = '';
+$CRM_WEBHOOK_URL = 'https://api.apiintegracoes.com/functions/v1/lead-form-webhook-ingest?token=7655040b-9ae1-4271-99c7-f9ab388444d0';
 // Token do webhook, se o seu CRM exigir. Se o token já estiver
 // dentro da URL, pode deixar isto em branco.
-$CRM_WEBHOOK_TOKEN = '';
+$CRM_WEBHOOK_TOKEN = '7655040b-9ae1-4271-99c7-f9ab388444d0';
 
 // ============================================================
 
