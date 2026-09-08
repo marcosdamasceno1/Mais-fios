@@ -167,3 +167,73 @@ leadForm.addEventListener('submit', async (event) => {
     submitBtn.style.opacity = '';
   }
 });
+
+// Carrossel de logos infinito, sem emenda e sem buracos.
+// Você lista os logos UMA vez no HTML; aqui duplicamos o conjunto quantas
+// vezes forem necessárias para preencher a tela, e deslizamos exatamente a
+// largura de um conjunto — assim o recomeço é invisível em qualquer tela.
+(function () {
+  const track = document.getElementById('logosTrack');
+  const viewport = track ? track.closest('.logos-viewport') : null;
+  if (!track || !viewport) return;
+
+  const prefersReduced =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return; // no modo sem animação vira scroll manual (CSS cuida)
+
+  const originais = Array.prototype.slice.call(track.children);
+  if (!originais.length) return;
+
+  const PX_POR_SEGUNDO = 70; // velocidade do carrossel
+
+  function montar() {
+    // remove clones de uma montagem anterior (ex.: ao redimensionar)
+    track.querySelectorAll('[data-clone]').forEach((n) => n.remove());
+    track.classList.remove('is-ready');
+
+    // largura de UM conjunto (só os originais)
+    let larguraConjunto = 0;
+    originais.forEach((el) => { larguraConjunto += el.getBoundingClientRect().width; });
+    const estilo = getComputedStyle(originais[0]);
+    larguraConjunto += (parseFloat(estilo.marginLeft) + parseFloat(estilo.marginRight)) * originais.length;
+    if (larguraConjunto < 1) return;
+
+    // quantos conjuntos no total para cobrir 2x a viewport + folga
+    const alvo = viewport.offsetWidth * 2 + larguraConjunto;
+    const totalConjuntos = Math.max(2, Math.ceil(alvo / larguraConjunto));
+
+    for (let c = 1; c < totalConjuntos; c++) {
+      originais.forEach((el) => {
+        const clone = el.cloneNode(true);
+        clone.setAttribute('data-clone', '');
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
+    }
+
+    track.style.setProperty('--marq-shift', larguraConjunto + 'px');
+    track.style.setProperty('--marq-dur', (larguraConjunto / PX_POR_SEGUNDO) + 's');
+    track.classList.add('is-ready');
+  }
+
+  // Espera as imagens carregarem para medir a largura certa.
+  const imgs = track.querySelectorAll('img');
+  let pendentes = imgs.length;
+  const talvezMontar = () => { if (pendentes <= 0) montar(); };
+  if (pendentes === 0) {
+    montar();
+  } else {
+    imgs.forEach((img) => {
+      if (img.complete) { pendentes--; }
+      else {
+        img.addEventListener('load', () => { pendentes--; talvezMontar(); });
+        img.addEventListener('error', () => { pendentes--; talvezMontar(); });
+      }
+    });
+    talvezMontar();
+  }
+
+  // Remonta ao redimensionar a janela (mantém sem buraco em qualquer largura).
+  let t;
+  window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(montar, 200); });
+})();

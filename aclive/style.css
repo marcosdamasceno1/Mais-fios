@@ -501,18 +501,22 @@ h2 em {
   flex-wrap: nowrap;
   align-items: center;
   width: max-content;
-  /* a lista aparece 2x no HTML; deslizar -50% mostra exatamente 1 lista,
-     e como a 2ª é idêntica, o recomeço é invisível (loop sem emenda) */
-  animation: logos-scroll 40s linear infinite;
   will-change: transform;
+}
+
+/* O JS duplica os logos e define --marq-shift (largura de 1 conjunto) e
+   --marq-dur (duração p/ velocidade constante). Deslizar exatamente 1
+   conjunto faz o recomeço ser invisível (loop sem emenda). */
+.logos-track.is-ready {
+  animation: logos-scroll var(--marq-dur, 40s) linear infinite;
 }
 
 @keyframes logos-scroll {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(calc(-1 * var(--marq-shift, 50%))); }
 }
 
-.clients-band:hover .logos-track { animation-play-state: paused; }
+.clients-band:hover .logos-track.is-ready { animation-play-state: paused; }
 
 .client-logo {
   flex: 0 0 auto;
@@ -926,7 +930,7 @@ h2 em {
 
   /* Sem animação: carrossel de arrastar (não congela cortado).
      Esconde a 2ª lista duplicada e libera o scroll horizontal manual. */
-  .logos-track { animation: none; }
+  .logos-track, .logos-track.is-ready { animation: none; }
   .logos-viewport {
     overflow-x: auto;
     -webkit-mask-image: none;
